@@ -52,7 +52,7 @@ const CreateUser: React.FC = () => {
   return (
     <section className="h-svh bg-neutral-200 dark:bg-neutral-700">
       <ToastNotifier />
-      <div className="container h-full p-10">
+      <div className="container h-full p-10 mx-auto">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div className="w-full">
             <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
