@@ -5,8 +5,13 @@ export interface AuthState {
   userId: string | null;
   username: string | null;
 }
+
+export interface FileState {
+  isFileUploaded: boolean;
+}
 export interface StoreRootState {
   user: AuthState;
+  file: FileState;
 }
 
 export interface AuthMiddlewareProps {

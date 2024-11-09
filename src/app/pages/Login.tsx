@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import { JwtUserPayload, StoreRootState } from "../types";
 import { useHistory } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
@@ -10,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastNotifier } from "../components/ToastNotifier";
 import { toast } from "react-toastify";
 import { LoadingAnimation } from "../components/LoadingAnimation";
+import axiosInstance from "../common/axios";
+import { resetFileUploaded } from "../redux/slice";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -23,12 +24,13 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_PATH}/auth/login`, {
+      const response = await axiosInstance.post(`/auth/login`, {
         username,
         password,
       });
       const token = response.data.token;
       const decoded: JwtUserPayload = jwtDecode(token);
+
       dispatch({
         type: "LOGIN_SUCCESS",
         payload: {
@@ -37,6 +39,7 @@ const Login: React.FC = () => {
           userId: decoded.userId,
         },
       });
+      window.location.reload();
     } catch (error) {
       console.error("Login failed:", error);
       toast.error("Login Failed!");

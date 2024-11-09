@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { JwtUserPayload, StoreRootState } from "../types";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +7,7 @@ import BannerDark from "../assets/banner-dark.png";
 import Logo from "../assets/logo.png";
 import { ToastNotifier } from "../components/ToastNotifier";
 import { toast } from "react-toastify";
+import axiosInstance from "../common/axios";
 
 const CreateUser: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -18,12 +18,11 @@ const CreateUser: React.FC = () => {
 
   const handleCreateUser = async () => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_PATH}/createuser`, {
+      const response = await axiosInstance.post(`/auth/register`, {
         username,
         password,
       });
-      console.log("User created successfully:", response.data);
-      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_PATH}/auth/login`, {
+      const { data } = await axiosInstance.post(`/auth/login`, {
         username,
         password,
       });

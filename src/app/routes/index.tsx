@@ -5,6 +5,8 @@ import Login from "../pages/Login";
 import NotFound from "../components/NotFound";
 import AuthMiddleware from "../middlewares";
 import CreateUser from "../pages/CreateUser";
+import FileView from "../components/FileView";
+import ShareView from "../components/ShareView";
 
 const AppRoutes: React.FC = () => {
   return (
@@ -17,8 +19,14 @@ const AppRoutes: React.FC = () => {
           <Dashboard />
         </AuthMiddleware>
       </Route>
+      <Route path="/file/:imageName">
+        <AuthMiddleware>
+          <FileView />
+        </AuthMiddleware>
+      </Route>
+      <Route path="/share/:imageName" component={ShareView} />
       <Route component={NotFound} />
-    </Switch>
+    </Switch >
   );
 };
 

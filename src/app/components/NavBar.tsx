@@ -19,9 +19,7 @@ const NavBar = () => {
         <img className="w-[150px]" src={Logo} alt="Banner" />
       </div>
       <div className="flex gap-3">
-        <button className="bg-red-600 text-white px-4 py-2 rounded" onClick={handleLogout}>
-          Logout
-        </button>
+        <button className="btn btn-primary" onClick={handleLogout}>Logout</button>
       </div>
     </header>
   );

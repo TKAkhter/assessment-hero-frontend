@@ -9,8 +9,13 @@ const Dashboard: React.FC = () => {
     <>
       <ToastNotifier />
       <NavBar />
-      <FileUpload />
-      <FileList />
+      <div className="container mx-auto p-4">
+        <FileUpload />
+        <div className="my-10">
+        <div className="divider"></div>
+          <FileList />
+        </div>
+      </div>
     </>
   );
 };
