@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axiosInstance from '../common/axios';
+import { constants } from '../common/constants';
 
 const FileView: React.FC = () => {
     const { imageName } = useParams<{ imageName: string }>();
@@ -47,7 +48,8 @@ const FileView: React.FC = () => {
                     <div className="hero bg-base-200 min-h-screen">
                         <div className="hero-content flex-col lg:flex-row">
                             <img
-                                src={`${process.env.REACT_APP_API_URL}/uploads/${imageDetails.fileName}`}
+                                // Todo: Remove the hardcoded URL
+                                src={`${process.env.REACT_APP_API_URL ?? constants.REACT_APP_API_URL}/uploads/${imageDetails.fileName}`}
                                 className="max-w-sm rounded-lg shadow-2xl" />
                             <div>
                                 <h1 className="text-xl">Name: <b>{imageDetails.name}</b></h1>

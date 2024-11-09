@@ -1,7 +1,9 @@
 import axios from "axios";
+import { constants } from "./constants";
 
 const axiosInstance = axios.create({
-    baseURL: `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_PATH}`
+    // Todo: Remove the hardcoded URL
+    baseURL: `${process.env.REACT_APP_API_URL ?? constants.REACT_APP_API_URL}/${process.env.REACT_APP_API_PATH ?? constants.REACT_APP_API_PATH}`
 });
 
 if (localStorage.token) {

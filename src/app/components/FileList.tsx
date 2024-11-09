@@ -5,6 +5,7 @@ import axiosInstance from '../common/axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreRootState } from '../types';
 import { resetFileUploaded } from '../redux/slice';
+import { constants } from '../common/constants';
 
 interface File {
   _id: string;
@@ -70,7 +71,8 @@ const FileList: React.FC = () => {
           <div>
             <Link to={`/file/${file.fileName}`}>
               <img className="object-cover object-center w-full h-80 max-w-full rounded-lg"
-                src={`${process.env.REACT_APP_API_URL}/uploads/${file.fileName}`}
+                // Todo: Remove the hardcoded URL
+                src={`${process.env.REACT_APP_API_URL ?? constants.REACT_APP_API_URL}/uploads/${file.fileName}`}
                 alt={file.name}
               />
             </Link>
